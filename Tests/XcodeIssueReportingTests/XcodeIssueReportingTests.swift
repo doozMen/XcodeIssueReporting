@@ -4,12 +4,13 @@ import XCTest
 final class XcodeIssueReportingTests: XCTestCase {
     func generateReports() -> [XcodeIssue] {
         [
-            .error("Test"),
+          .error("Test"),
         ]
     }
     
     func testExample() throws {
         let reports = generateReports()
-        XCTAssertEqual(XcodeIssue.reportMessage(for: reports[0]), "error:Test")
+        let result = XcodeIssue.reportMessage(for: .error("Test"))
+        XCTAssertTrue(result.hasSuffix("error: Test"), "\(result)")
     }
 }
